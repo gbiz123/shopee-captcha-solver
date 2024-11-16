@@ -3,7 +3,7 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"  # If not defined, then legacy behavior can happen.
 
 [project]
-name = "temu-captcha-solver"
+name = "shopee-captcha-solver"
 version = "0.1.0"
 
 description = "This package integrates with Selenium or Playwright to solve any Shopee captcha in one line of code."
