@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"  # If not defined, then legacy behavior can happen.
+
+[project]
+name = "temu-captcha-solver"
+version = "0.1.0"
+
+description = "This package integrates with Selenium or Playwright to solve any Temu captcha in one line of code."
+readme = "README.md"
+requires-python = ">=3.10"
+
+keywords = ["temu", "captcha", "solver", "selenium", "playwright"]
+
+authors = [
+  {name = "Toughdata LLC", email = "greg@toughdata.net" }
+]
+
+classifiers = [
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Build Tools",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3 :: Only",
+]
+
+dependencies = [
+  "selenium",
+  "webdriver-manager",
+  "pydantic",
+  "requests",
+  "pytest",
+  "pytest-asyncio",
+  "playwright",
+  "playwright-stealth",
+  "undetected_chromedriver",
+  "setuptools"
+]
+
+[project.urls]
+"Homepage" = "https://www.sadcaptcha.com"
+"Source" = "https://github.com/gbiz123/temu-captcha-solver/"

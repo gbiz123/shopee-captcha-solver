@@ -1,0 +1,1 @@
+temu_captcha_solver

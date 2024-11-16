@@ -1,0 +1,10 @@
+selenium
+webdriver-manager
+pydantic
+requests
+pytest
+pytest-asyncio
+playwright
+playwright-stealth
+undetected_chromedriver
+setuptools
