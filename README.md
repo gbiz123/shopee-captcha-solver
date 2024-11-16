@@ -8,7 +8,7 @@ Currently we are able to solve the crawling image and the puzzle slide:
 
 <div align="center">
     <img src="https://sadcaptcha.b-cdn.net/shopee-image-crawl-captcha.png" width="200px" height="150px" alt="Shopee Captcha Solver">
-    <img src="https://sadcaptcha.b-cdn.net/shopee-puzzle-captcha.png" width="200px" height="150px" alt="SHopee Captcha Solver">
+    <img src="https://sadcaptcha.b-cdn.net/shopee-puzzle-slide-captcha.png" width="200px" height="150px" alt="SHopee Captcha Solver">
 </div>
 
 The Crawling Image challenge is the one where there is a puzzle piece that travels in an unpredictable trajectory, and there are two possible locations where the solution may be.
