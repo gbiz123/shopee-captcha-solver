@@ -1,11 +1,11 @@
 Metadata-Version: 2.1
-Name: temu-captcha-solver
+Name: shopee-captcha-solver
 Version: 0.1.0
-Summary: This package integrates with Selenium or Playwright to solve any Temu captcha in one line of code.
+Summary: This package integrates with Selenium or Playwright to solve any Shopee captcha in one line of code.
 Author-email: Toughdata LLC <greg@toughdata.net>
 Project-URL: Homepage, https://www.sadcaptcha.com
-Project-URL: Source, https://github.com/gbiz123/temu-captcha-solver/
-Keywords: temu,captcha,solver,selenium,playwright
+Project-URL: Source, https://github.com/gbiz123/shopee-captcha-solver/
+Keywords: shopee,captcha,solver,selenium,playwright
 Classifier: Intended Audience :: Developers
 Classifier: Topic :: Software Development :: Build Tools
 Classifier: Programming Language :: Python :: 3.10
@@ -25,21 +25,22 @@ Requires-Dist: playwright-stealth
 Requires-Dist: undetected_chromedriver
 Requires-Dist: setuptools
 
-# Temu Captcha Solver API
-This project is the [SadCaptcha Temu Captcha Solver](https://www.sadcaptcha.com/temu-captcha-solver?ref=temughclientrepo) API client.
+# Shopee Captcha Solver API
+This project is the [SadCaptcha Shopee Captcha Solver](https://www.sadcaptcha.com/shopee-captcha-solver?ref=shopeeghclientrepo) API client.
 The purpose is to make integrating SadCaptcha into your Selenium, Playwright, or Async Playwright app as simple as one line of code.
 Instructions for integrating with Selenium, Playwright, and Async Playwright are described below in their respective sections.
 
-The end goal of this tool is to solve every single Temu captcha. 
-Currently we are able to solve the arced slide and the puzzle slide:
+The end goal of this tool is to solve every single Shopee captcha. 
+Currently we are able to solve the crawling image and the puzzle slide:
 
 <div align="center">
-    <img src="https://sadcaptcha.b-cdn.net/arced-slide-temu-captcha.png" width="200px" height="150px" alt="TikTok Captcha Solver">
-    <img src="https://sadcaptcha.b-cdn.net/temu-puzzle.webp" width="200px" height="150px" alt="TikTok Captcha Solver">
+    <img src="https://sadcaptcha.b-cdn.net/shopee-image-crawl-captcha.png" width="200px" height="150px" alt="Shopee Captcha Solver">
+    <img src="https://sadcaptcha.b-cdn.net/shopee-image-crawl-captcha.png" width="200px" height="150px" alt="SHopee Captcha Solver">
 </div>
 
-The Arced Slide challenge is the one where there is a puzzle piece that travels in an unpredictable trajectory, and there are two possible locations where the solution may be.
-The puzzle slide is unique in that the pieces relocate after you drag the slider.
+The Crawling Image challenge is the one where there is a puzzle piece that travels in an unpredictable trajectory, and there are two possible locations where the solution may be.
+This often shows up at login.
+The puzzle slide is just a simple challenge that asks you to move the piece to the correct location.
     
 ## Requirements
 - Python >= 3.10
@@ -52,7 +53,7 @@ The puzzle slide is unique in that the pieces relocate after you drag the slider
 ## Installation
 This project can be installed with `pip`. Just run the following command:
 ```
-pip install temu-captcha-solver
+pip install shopee-captcha-solver
 ```
 
 ## Selenium Client 
@@ -61,7 +62,7 @@ This turns the entire captcha detection, solution, retry, and verification proce
 It is the recommended method if you are using Playwright.
 
 ```py
-from temu_captcha_solver import SeleniumSolver
+from shopee_captcha_solver import SeleniumSolver
 from selenium_stealth import stealth
 import undetected_chromedriver as uc
 
@@ -69,7 +70,7 @@ driver = uc.Chrome(headless=False) # Use default undetected_chromedriver configu
 api_key = "YOUR_API_KEY_HERE"
 sadcaptcha = SeleniumSolver(driver, api_key)
 
-# Selenium code that causes a Temu captcha...
+# Selenium code that causes a Shopee captcha...
 
 sadcaptcha.solve_captcha_if_present(retries=5)
 ```
@@ -84,7 +85,7 @@ It is the recommended method if you are using playwright.
 
 
 ```py
-from temu_captcha_solver import PlaywrightSolver
+from shopee_captcha_solver import PlaywrightSolver
 from playwright.sync_api import Page, sync_playwright
 from playwright_stealth import stealth_sync, StealthConfig
 
@@ -96,7 +97,7 @@ with sync_playwright() as p:
     config = StealthConfig(navigator_languages=False, navigator_vendor=False, navigator_user_agent=False)
     stealth_sync(page, config) # Use correct playwright_stealth configuration!
     
-    # Playwright code that causes a Temu captcha...
+    # Playwright code that causes a Shopee captcha...
 
     sadcaptcha = PlaywrightSolver(page, api_key)
     sadcaptcha.solve_captcha_if_present(retries=5)
@@ -113,7 +114,7 @@ It is the recommended method if you are using async playwright.
 
 ```py
 import asyncio
-from temu_captcha_solver import AsyncPlaywrightSolver
+from shopee_captcha_solver import AsyncPlaywrightSolver
 from playwright.async_api import Page, async_playwright
 from playwright_stealth import stealth_async, StealthConfig
 
@@ -126,7 +127,7 @@ async def main()
         config = StealthConfig(navigator_languages=False, navigator_vendor=False, navigator_user_agent=False)
         await stealth_async(page, config) # Use correct playwright_stealth configuration!
         
-        # Playwright code that causes a Temu captcha...
+        # Playwright code that causes a Shopee captcha...
 
         sadcaptcha = AsyncPlaywrightSolver(page, api_key)
         await sadcaptcha.solve_captcha_if_present(retries=5)
