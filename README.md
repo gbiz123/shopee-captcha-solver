@@ -7,8 +7,8 @@ The end goal of this tool is to solve every single Shopee captcha.
 Currently we are able to solve the crawling image and the puzzle slide:
 
 <div align="center">
-    <img src="https://sadcaptcha.b-cdn.net/arced-slide-temu-captcha.png" width="200px" height="150px" alt="TikTok Captcha Solver">
-    <img src="https://sadcaptcha.b-cdn.net/temu-puzzle.webp" width="200px" height="150px" alt="TikTok Captcha Solver">
+    <img src="https://sadcaptcha.b-cdn.net/shopee-image-crawl-captcha.png" width="200px" height="150px" alt="Shopee Captcha Solver">
+    <img src="https://sadcaptcha.b-cdn.net/shopee-image-crawl-captcha.png" width="200px" height="150px" alt="SHopee Captcha Solver">
 </div>
 
 The Crawling Image challenge is the one where there is a puzzle piece that travels in an unpredictable trajectory, and there are two possible locations where the solution may be.
@@ -26,7 +26,7 @@ The puzzle slide is just a simple challenge that asks you to move the piece to t
 ## Installation
 This project can be installed with `pip`. Just run the following command:
 ```
-pip install temu-captcha-solver
+pip install shopee-captcha-solver
 ```
 
 ## Selenium Client 
@@ -43,7 +43,7 @@ driver = uc.Chrome(headless=False) # Use default undetected_chromedriver configu
 api_key = "YOUR_API_KEY_HERE"
 sadcaptcha = SeleniumSolver(driver, api_key)
 
-# Selenium code that causes a Temu captcha...
+# Selenium code that causes a Shopee captcha...
 
 sadcaptcha.solve_captcha_if_present(retries=5)
 ```
@@ -70,7 +70,7 @@ with sync_playwright() as p:
     config = StealthConfig(navigator_languages=False, navigator_vendor=False, navigator_user_agent=False)
     stealth_sync(page, config) # Use correct playwright_stealth configuration!
     
-    # Playwright code that causes a Temu captcha...
+    # Playwright code that causes a Shopee captcha...
 
     sadcaptcha = PlaywrightSolver(page, api_key)
     sadcaptcha.solve_captcha_if_present(retries=5)
@@ -100,7 +100,7 @@ async def main()
         config = StealthConfig(navigator_languages=False, navigator_vendor=False, navigator_user_agent=False)
         await stealth_async(page, config) # Use correct playwright_stealth configuration!
         
-        # Playwright code that causes a Temu captcha...
+        # Playwright code that causes a Shopee captcha...
 
         sadcaptcha = AsyncPlaywrightSolver(page, api_key)
         await sadcaptcha.solve_captcha_if_present(retries=5)
