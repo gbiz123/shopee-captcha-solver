@@ -91,8 +91,7 @@ class PlaywrightSolver(SyncSolver):
 
     
     def solve_puzzle(self, retries: int = 3) -> None:
-        """Temu puzzle is special because the pieces shift when pressing the slider button.
-        Therefore we must send the pictures after pressing the button. """
+        """Simple slide puzzle. Slide puzzle piece to correct location."""
         button_bbox = self._get_element_bounding_box(PUZZLE_BUTTON_SELECTOR)
         start_x, start_y = get_box_center(button_bbox)
         self.page.mouse.move(start_x, start_y)
@@ -117,7 +116,7 @@ class PlaywrightSolver(SyncSolver):
 
     
     def solve_image_crawl(self) -> None:
-        """Solves the arced slide puzzle. This challenge is similar to the puzzle
+        """Solves the image crawl puzzle. This challenge is similar to the puzzle
         challenge, but the puzzle piece travels in an arc, hence then name arced slide.
         The API expects the b64 encoded puzzle and piece images, along with data about the piece's
         trajectory in a list of ArcedSlideTrajectoryElements.
@@ -152,7 +151,7 @@ class PlaywrightSolver(SyncSolver):
 
     
     def _gather_arced_slide_request_data(self, slide_button_center_x: float, slide_button_center_y: float) -> ImageCrawlCaptchaRequest:
-        """Get the images and trajectory for arced slide request"""
+        """Get the images and trajectory for image crawl request"""
         puzzle = self.get_b64_img_from_src(IMAGE_CRAWL_PUZZLE_IMAGE_SELECTOR)
         piece = self.get_b64_img_from_src(IMAGE_CRAWL_PIECE_IMAGE_SELECTOR)
         trajectory = self._get_slide_piece_trajectory(slide_button_center_x, slide_button_center_y)
