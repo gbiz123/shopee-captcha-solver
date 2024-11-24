@@ -32,7 +32,12 @@ def test_solve_captcha_at_login(caplog):
         # driver.find_element(By.CSS_SELECTOR, "input[name=phone]").click()
         # driver.find_element(By.CSS_SELECTOR, "input[name=phone]").send_keys("55 1254 5678")
         # driver.find_element(By.CSS_SELECTOR, "form > button").click()
-        sadcaptcha = SeleniumSolver(driver, os.environ["API_KEY"], dump_requests=True)
+        sadcaptcha = SeleniumSolver(
+                driver,
+                os.environ["API_KEY"],
+                dump_requests=True,
+                mouse_step_size=3
+        )
         sadcaptcha.solve_captcha_if_present()
         # assert sadcaptcha.captcha_is_not_present()
     finally:
