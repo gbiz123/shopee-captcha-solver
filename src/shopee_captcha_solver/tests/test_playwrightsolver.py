@@ -10,8 +10,6 @@ from ..playwrightsolver import PlaywrightSolver
 def test_solve_captcha_on_shopee_register(caplog):
     mexico_proxy = {
         "server": "45.67.2.115:5689",
-        "username": "meproxyasdasdasd",
-        "password": "ijfsdpiojfpasdasd"
     }
     caplog.set_level(logging.DEBUG)
     with sync_playwright() as p:
@@ -30,8 +28,6 @@ def test_solve_captcha_on_shopee_register(caplog):
 def test_solve_captcha_on_shopee_login(caplog):
     brazil_proxy = {
             "server": "85.198.47.83:6351",
-        "username": "meproxyasdasdasd",
-        "password": "ijfsdpiojfpasdasd"
     }
     caplog.set_level(logging.DEBUG)
     with sync_playwright() as p:
