@@ -236,7 +236,6 @@ class PlaywrightSolver(SyncSolver):
         self.page.mouse.move(start_x_coord + x_distance + overshoot, start_y_coord + overshoot, steps=100) # overshoot forward
         self.page.mouse.move(start_x_coord + x_distance, start_y_coord, steps=75) # overshoot back
         time.sleep(0.2)
-        self.page.mouse.up()
 
     def _get_arced_slide_trajectory_element(
             self,

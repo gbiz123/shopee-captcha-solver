@@ -10,8 +10,6 @@ from ..playwrightsolver import PlaywrightSolver
 def test_solve_captcha_on_shopee_register(caplog):
     mexico_proxy = {
         "server": "45.67.2.115:5689",
-        "username": "aupzmsxp",
-        "password": "vszgekgiz6ax"
     }
     caplog.set_level(logging.DEBUG)
     with sync_playwright() as p:
@@ -30,8 +28,6 @@ def test_solve_captcha_on_shopee_register(caplog):
 def test_solve_captcha_on_shopee_login(caplog):
     brazil_proxy = {
         "server": "206.232.75.209:6779",
-        "username": "aupzmsxp",
-        "password": "vszgekgiz6ax"
     }
     caplog.set_level(logging.DEBUG)
     with sync_playwright() as p:
@@ -53,9 +49,10 @@ def test_solve_captcha_on_shopee_login(caplog):
         stealth_sync(page, config)
         page.goto("https://shopee.com.mx/")
         sadcaptcha = PlaywrightSolver(page, os.environ["API_KEY"], dump_requests=True)
-        input("Sign in to Google then press enter")
-        url = page.url # Refresh the page to avoid detached frame (hacky yes)
-        page.goto(url)
+        # input("Sign in to Google then press enter")
+        # url = page.url # Refresh the page to avoid detached frame (hacky yes)
+        # page.goto(url)
         input("Press enter to refresh the page and solve the captcha")
         sadcaptcha.solve_captcha_if_present()
+        time.sleep(5)
         assert sadcaptcha.captcha_is_not_present()

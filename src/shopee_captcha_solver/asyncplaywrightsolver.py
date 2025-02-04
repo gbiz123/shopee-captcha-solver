@@ -223,7 +223,6 @@ class AsyncPlaywrightSolver(AsyncSolver):
         await self.page.mouse.move(start_x_coord + x_distance + overshoot, start_y_coord + overshoot, steps=100) # overshoot forward
         await self.page.mouse.move(start_x_coord + x_distance, start_y_coord, steps=75) # overshoot back
         await asyncio.sleep(0.2)
-        await self.page.mouse.up()
 
     async def _get_arced_slide_trajectory_element(
             self,

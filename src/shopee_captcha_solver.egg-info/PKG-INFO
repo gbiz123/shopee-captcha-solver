@@ -1,6 +1,6 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.2
 Name: shopee-captcha-solver
-Version: 0.1.1
+Version: 0.1.3
 Summary: This package integrates with Selenium or Playwright to solve any Shopee captcha in one line of code.
 Author-email: Toughdata LLC <greg@toughdata.net>
 Project-URL: Homepage, https://www.sadcaptcha.com
@@ -35,7 +35,7 @@ Currently we are able to solve the crawling image and the puzzle slide:
 
 <div align="center">
     <img src="https://sadcaptcha.b-cdn.net/shopee-image-crawl-captcha.png" width="200px" height="150px" alt="Shopee Captcha Solver">
-    <img src="https://sadcaptcha.b-cdn.net/shopee-image-crawl-captcha.png" width="200px" height="150px" alt="SHopee Captcha Solver">
+    <img src="https://sadcaptcha.b-cdn.net/shopee-puzzle-slide-captcha.png" width="200px" height="150px" alt="SHopee Captcha Solver">
 </div>
 
 The Crawling Image challenge is the one where there is a puzzle piece that travels in an unpredictable trajectory, and there are two possible locations where the solution may be.
