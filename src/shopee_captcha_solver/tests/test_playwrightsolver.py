@@ -40,14 +40,14 @@ def test_solve_captcha_on_shopee_login(caplog):
                 ]
         )
         context = browser.new_context(
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+            # user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
             viewport={"width": 1280, "height": 720}
         )
         page = context.new_page()
         config = StealthConfig(navigator_languages=False, navigator_vendor=False, navigator_user_agent=False)
         # devinscrumbo@gmail.com, th.etoughapi1!
         stealth_sync(page, config)
-        page.goto("https://shopee.com.mx/")
+        page.goto("https://shopee.com.br/")
         sadcaptcha = PlaywrightSolver(page, os.environ["API_KEY"], dump_requests=True)
         # input("Sign in to Google then press enter")
         # url = page.url # Refresh the page to avoid detached frame (hacky yes)

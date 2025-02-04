@@ -16,6 +16,8 @@ from selenium.webdriver.common.actions.pointer_input import PointerInput
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 
+from shopee_captcha_solver.selenium_util import wait_for_element_to_be_stable
+
 from .geometry import(
     get_box_center,
     get_center,
@@ -45,20 +47,20 @@ class SeleniumSolver(SyncSolver):
     client: ApiClient
     chromedriver: Chrome
 
-    STEP_SIZE_PIXELS = 1
-
     def __init__(
             self, 
             chromedriver: Chrome,
             sadcaptcha_api_key: str,
             headers: dict[str, Any] | None = None,
             proxy: str | None = None,
-            dump_requests: bool = False
+            dump_requests: bool = False,
+            mouse_step_size: int = 3,
         ) -> None:
         self.chromedriver = chromedriver
         self.client = ApiClient(sadcaptcha_api_key)
         self.headers = headers
         self.proxy = proxy
+        self.mouse_step_size = mouse_step_size
         super().__init__(dump_requests)
 
     def captcha_is_present(self, timeout: int = 15) -> bool:
@@ -212,11 +214,11 @@ class SeleniumSolver(SyncSolver):
         _ = actions.click_and_hold(slide_button)
         trajectory: list[ArcedSlideTrajectoryElement] = []
         times_piece_did_not_move = 0
-        for pixel in range(0, int(slide_bar_width), self.STEP_SIZE_PIXELS):
+        for pixel in range(0, int(slide_bar_width), self.mouse_step_size):
             actions \
-                .move_by_offset(self.STEP_SIZE_PIXELS, int(random.gauss(0, 5))) \
-                .pause(0.01) \
+                .move_by_offset(self.mouse_step_size, int(random.gauss(0, 5))) \
                 .perform()
+            # wait_for_element_to_be_stable(self.chromedriver, slider_piece)
             trajectory.append(
                 self._get_arced_slide_trajectory_element(
                     pixel,
@@ -224,13 +226,13 @@ class SeleniumSolver(SyncSolver):
                     slider_piece
                 )
             )
-            if not len(trajectory) > 100:
+            if not len(trajectory) > 100 / self.mouse_step_size:
                 continue
             if piece_is_not_moving(trajectory):
                 times_piece_did_not_move += 1
             else:
                 times_piece_did_not_move = 0
-            if times_piece_did_not_move >= 20:
+            if times_piece_did_not_move >= 3:
                 break
         actions.perform()
         return trajectory

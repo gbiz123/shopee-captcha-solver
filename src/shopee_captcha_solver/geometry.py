@@ -48,3 +48,12 @@ def piece_is_not_moving(trajectory: list[ArcedSlideTrajectoryElement]) -> bool:
         return True
     else:
         return False
+
+
+def interpolate_trajectory(trajectory: list[ArcedSlideTrajectoryElement], element_spacing: int) -> list[ArcedSlideTrajectoryElement]:
+    """Perform linear interpolation between each element so that there
+    is an element at each pixel distance from origin"""
+    new_trajectory = []
+
+
+

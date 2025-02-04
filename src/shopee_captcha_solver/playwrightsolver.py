@@ -8,6 +8,8 @@ from playwright.sync_api import FloatRect, Locator, Page, expect
 from playwright.sync_api import TimeoutError
 import time
 
+from shopee_captcha_solver.playwright_util import wait_for_locator_to_be_stable
+
 from .syncsolver import SyncSolver
 
 from .selectors import (
@@ -46,20 +48,20 @@ class PlaywrightSolver(SyncSolver):
     client: ApiClient
     page: Page
 
-    STEP_SIZE_PIXELS = 1
-
     def __init__(
             self,
             page: Page,
             sadcaptcha_api_key: str,
             headers: dict[str, Any] | None = None, 
             proxy: str | None = None,
-            dump_requests: bool = False
+            dump_requests: bool = False,
+            mouse_step_size: int = 3
         ) -> None:
         self.page = page
         self.client = ApiClient(sadcaptcha_api_key)
         self.headers = headers
         self.proxy = proxy
+        self.mouse_step_size = mouse_step_size
         super().__init__(dump_requests)
 
     
@@ -91,8 +93,7 @@ class PlaywrightSolver(SyncSolver):
 
     
     def solve_puzzle(self, retries: int = 3) -> None:
-        """Temu puzzle is special because the pieces shift when pressing the slider button.
-        Therefore we must send the pictures after pressing the button. """
+        """Simple slide puzzle. Slide puzzle piece to correct location."""
         button_bbox = self._get_element_bounding_box(PUZZLE_BUTTON_SELECTOR)
         start_x, start_y = get_box_center(button_bbox)
         self.page.mouse.move(start_x, start_y)
@@ -117,7 +118,7 @@ class PlaywrightSolver(SyncSolver):
 
     
     def solve_image_crawl(self) -> None:
-        """Solves the arced slide puzzle. This challenge is similar to the puzzle
+        """Solves the image crawl puzzle. This challenge is similar to the puzzle
         challenge, but the puzzle piece travels in an arc, hence then name arced slide.
         The API expects the b64 encoded puzzle and piece images, along with data about the piece's
         trajectory in a list of ArcedSlideTrajectoryElements.
@@ -152,7 +153,7 @@ class PlaywrightSolver(SyncSolver):
 
     
     def _gather_arced_slide_request_data(self, slide_button_center_x: float, slide_button_center_y: float) -> ImageCrawlCaptchaRequest:
-        """Get the images and trajectory for arced slide request"""
+        """Get the images and trajectory for image crawl request"""
         puzzle = self.get_b64_img_from_src(IMAGE_CRAWL_PUZZLE_IMAGE_SELECTOR)
         piece = self.get_b64_img_from_src(IMAGE_CRAWL_PIECE_IMAGE_SELECTOR)
         trajectory = self._get_slide_piece_trajectory(slide_button_center_x, slide_button_center_y)
@@ -175,21 +176,22 @@ class PlaywrightSolver(SyncSolver):
         trajectory: list[ArcedSlideTrajectoryElement] = []
 
         times_piece_did_not_move = 0
-        for pixel in range(0, int(slide_bar_width), self.STEP_SIZE_PIXELS):
+        for pixel in range(0, int(slide_bar_width), self.mouse_step_size):
             self.page.mouse.move(slide_button_center_x + pixel, slide_button_center_y - pixel)  # - pixel is to drag it diagonally
+            wait_for_locator_to_be_stable(slider_piece_locator)
             trajectory_element = self._get_arced_slide_trajectory_element(
                 pixel,
                 puzzle_img_bounding_box,
                 slider_piece_locator
             )
             trajectory.append(trajectory_element)
-            if not len(trajectory) > 100:
+            if not len(trajectory) > 100 / self.mouse_step_size:
                 continue
             if piece_is_not_moving(trajectory):
                 times_piece_did_not_move += 1
             else:
                 times_piece_did_not_move = 0
-            if times_piece_did_not_move >= 20:
+            if times_piece_did_not_move >= 10:
                 break
         return trajectory
 

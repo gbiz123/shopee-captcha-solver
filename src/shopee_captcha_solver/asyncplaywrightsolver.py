@@ -8,6 +8,8 @@ from playwright.async_api import FloatRect, Locator, Page, expect
 from playwright.async_api import TimeoutError
 import asyncio
 
+from shopee_captcha_solver.async_playwright_util import wait_for_locator_to_be_stable
+
 from .selectors import (
     IMAGE_CRAWL_BUTTON_SELECTOR,
     IMAGE_CRAWL_PIECE_IMAGE_SELECTOR,
@@ -43,20 +45,20 @@ class AsyncPlaywrightSolver(AsyncSolver):
     client: ApiClient
     page: Page
 
-    STEP_SIZE_PIXELS = 1
-
     def __init__(
             self,
             page: Page,
             sadcaptcha_api_key: str,
             headers: dict[str, Any] | None = None, 
             proxy: str | None = None,
-            dump_requests: bool = False
+            dump_requests: bool = False,
+            mouse_step_size: int = 3
         ) -> None:
         self.page = page
         self.client = ApiClient(sadcaptcha_api_key)
         self.headers = headers
         self.proxy = proxy
+        self.mouse_step_size = mouse_step_size
         super().__init__(dump_requests)
 
     
@@ -162,15 +164,16 @@ class AsyncPlaywrightSolver(AsyncSolver):
         trajectory: list[ArcedSlideTrajectoryElement] = []
 
         times_piece_did_not_move = 0
-        for pixel in range(0, int(slide_bar_width), self.STEP_SIZE_PIXELS):
+        for pixel in range(0, int(slide_bar_width), self.mouse_step_size):
             await self.page.mouse.move(slide_button_center_x + pixel, slide_button_center_y - pixel)  # - pixel is to drag it diagonally
+            await wait_for_locator_to_be_stable(slider_piece_locator)
             trajectory_element = await self._get_arced_slide_trajectory_element(
                 pixel,
                 puzzle_img_bounding_box,
                 slider_piece_locator
             )
             trajectory.append(trajectory_element)
-            if not len(trajectory) > 100:
+            if not len(trajectory) > 100 / self.mouse_step_size:
                 continue
             if piece_is_not_moving(trajectory):
                 times_piece_did_not_move += 1
