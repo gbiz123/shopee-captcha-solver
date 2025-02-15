@@ -9,12 +9,12 @@ assignees: ''
 
 # Help us help you! Make sure your issue includes the following information, or it may be closed automatically:
 
-Paste the URL you're trying to access here: [PASTE URL HERE]
-Paste your code inside the triple quotes below:
-  ```py
+1. Paste the URL you're trying to access here: [PASTE URL HERE]
+2. Paste your code inside the triple quotes below:
+    ```py
 
-  ```
-Paste the full console logs set where log_level is set to DEBUG here (if you're not sure how to do this, instructions are below):
+    ```
+3. Paste the full console logs set where log_level is set to DEBUG here (if you're not sure how to do this, instructions are below):
 
 # How to set log_level to DEBUG:
 Add the following lines to the top of your python script:
