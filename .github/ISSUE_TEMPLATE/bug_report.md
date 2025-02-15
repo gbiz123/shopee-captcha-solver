@@ -24,4 +24,4 @@ logging.basicConfig(level=logging.DEBUG)
 ```
 
 # Pull request
-**Please consider cloning this repository and making adjustments as needed to the code. By far the quickest way to get a new feature is to do it yourself.**
+**Please consider cloning this repository and making adjustments as needed to the code. Often times issues can be fixed very quickly by making very small adjustments to the code.**
