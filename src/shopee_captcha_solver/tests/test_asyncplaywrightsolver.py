@@ -33,7 +33,7 @@ async def test_solve_on_register(caplog):
 @pytest.mark.asyncio
 async def test_solve_captcha_on_shopee_login(caplog):
     brazil_proxy = {
-        "server": "206.232.75.209:6779",
+        "server": "45.67.2.115:5689",
         "username": "aupzmsxp",
         "password": "vszgekgiz6ax"
     }
@@ -55,7 +55,7 @@ async def test_solve_captcha_on_shopee_login(caplog):
         config = StealthConfig(navigator_languages=False, navigator_vendor=False, navigator_user_agent=False)
         # devinscrumbo@gmail.com, th.etoughapi1!
         await stealth_async(page, config)
-        await page.goto("https://shopee.com.mx/")
+        await page.goto("https://shopee.co.id/")
         sadcaptcha = AsyncPlaywrightSolver(page, os.environ["API_KEY"], dump_requests=True)
         input("Sign in to Google then press enter")
         url = page.url # Refresh the page to avoid detached frame (hacky yes)

@@ -68,10 +68,6 @@ class AsyncSolver(ABC):
         pass
 
     @abstractmethod
-    async def solve_semantic_shapes(self) -> None:
-        pass
-
-    @abstractmethod
     async def get_b64_img_from_src(self, selector: str) -> str:
         pass
 
