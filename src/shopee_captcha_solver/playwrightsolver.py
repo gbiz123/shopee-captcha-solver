@@ -4,6 +4,7 @@ import logging
 import math
 import random
 from typing import Any
+import warnings
 from playwright.sync_api import FloatRect, Locator, Page, expect
 from playwright.sync_api import TimeoutError
 import time
@@ -57,6 +58,7 @@ class PlaywrightSolver(SyncSolver):
             dump_requests: bool = False,
             mouse_step_size: int = 3
         ) -> None:
+        warnings.warn("!!!PlaywrightSolver is deprecated and no longer maintained!!! Instead, use 'make_playwright_solver_context()' which is imported from 'shopee_captcha_solver.launcher'. Please update your code for more reliability. For more details, please see the instructions on https://www.sadcaptcha.com/dashboard.")
         self.page = page
         self.client = ApiClient(sadcaptcha_api_key)
         self.headers = headers

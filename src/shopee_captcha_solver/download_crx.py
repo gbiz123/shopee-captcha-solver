@@ -14,16 +14,27 @@ LOGGER = logging.getLogger(__name__)
 EXTENSION_ID = "beojaiildognffpjmpiamfofnplkdfih"
 CHROME_EXT_DOWNLOAD_URL = f"https://clients2.google.com/service/update2/crx?response=redirect&prodversion=95.0.4638.54&acceptformat=crx2,crx3&x=id%3D{EXTENSION_ID}%26uc"
 
-@contextmanager
-def download_extension_to_unpacked() -> Generator[str, None, None]:
+def download_extension_to_unpacked() -> tempfile.TemporaryDirectory:
     with download_extension_to_tempfile() as f:
         temp_dir = tempfile.TemporaryDirectory()
-        try:
-            with zipfile.ZipFile(f.name, "r") as zip_file:
-                zip_file.extractall(temp_dir.name)
-                yield temp_dir.name
-        finally:
-            shutil.rmtree(temp_dir.name)
+        with zipfile.ZipFile(f.name, "r") as zip_file:
+            zip_file.extractall(temp_dir.name)
+            LOGGER.debug("extracted crx to directory: " + temp_dir.name)
+            return temp_dir
+
+
+def unpacked_to_crx(dir_name: str) -> str:
+    temp_dir = tempfile.TemporaryDirectory()
+    zip_name = os.path.join(temp_dir.name, "shopee-captcha-solver")
+    shutil.make_archive(
+        zip_name,
+        "zip",
+        dir_name, 
+    )
+    LOGGER.debug("zipped shopee-captcha-solver to directory: " + temp_dir.name)
+    input()
+    return zip_name + ".zip"
+
 
 @contextmanager
 def download_extension_to_tempfile() -> Generator[FileIO, None, None]:

@@ -7,6 +7,7 @@ import random
 import time
 from typing import Any
 from collections.abc import Generator
+import warnings
 from playwright.sync_api import FloatRect
 
 from selenium.webdriver import ActionChains, Chrome
@@ -56,6 +57,7 @@ class SeleniumSolver(SyncSolver):
             dump_requests: bool = False,
             mouse_step_size: int = 3,
         ) -> None:
+        warnings.warn("!!!SeleniumSolver is deprecated and no longer maintained!!! Instead, use 'make_undetected_chromedriver_solver()' which is imported from 'shopee_captcha_solver.launcher'. Please update your code for more reliability. For more details, please see the instructions on https://www.sadcaptcha.com/dashboard.")
         self.chromedriver = chromedriver
         self.client = ApiClient(sadcaptcha_api_key)
         self.headers = headers
