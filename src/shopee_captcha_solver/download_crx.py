@@ -1,6 +1,4 @@
 from collections.abc import Generator
-import os
-import shutil
 import zipfile
 from contextlib import contextmanager
 from io import FileIO
@@ -21,19 +19,6 @@ def download_extension_to_unpacked() -> tempfile.TemporaryDirectory:
             zip_file.extractall(temp_dir.name)
             LOGGER.debug("extracted crx to directory: " + temp_dir.name)
             return temp_dir
-
-
-def unpacked_to_crx(dir_name: str) -> str:
-    temp_dir = tempfile.TemporaryDirectory()
-    zip_name = os.path.join(temp_dir.name, "shopee-captcha-solver")
-    shutil.make_archive(
-        zip_name,
-        "zip",
-        dir_name, 
-    )
-    LOGGER.debug("zipped shopee-captcha-solver to directory: " + temp_dir.name)
-    input()
-    return zip_name + ".zip"
 
 
 @contextmanager

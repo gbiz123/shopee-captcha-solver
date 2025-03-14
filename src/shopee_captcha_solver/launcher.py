@@ -1,11 +1,10 @@
 import logging
-import re
 import tempfile
 from typing import Any
 
 from selenium.webdriver import ChromeOptions
 import undetected_chromedriver as uc
-from .download_crx import download_extension_to_unpacked, unpacked_to_crx
+from .download_crx import download_extension_to_unpacked
 
 from playwright import sync_api
 from playwright import async_api
@@ -28,14 +27,10 @@ def make_undetected_chromedriver_solver(
         options = ChromeOptions()
     ext_dir = download_extension_to_unpacked()
     _patch_extension_file_with_key(ext_dir.name, api_key)
-    crx_name = unpacked_to_crx(ext_dir.name)
-    options.add_extension(crx_name)
-    options.add_argument(f'--load-extension={crx_name}')
-    options.add_argument(f'--disable=extension-except={crx_name}')
+    options.add_argument(f'--load-extension={ext_dir.name}')
     chrome = uc.Chrome(options=options, **uc_chrome_kwargs)
     LOGGER.debug("created new undetected chromedriver patched with sadcaptcha")
     return chrome
-
 
 def make_playwright_solver_context(
     playwright: sync_api.Playwright,
