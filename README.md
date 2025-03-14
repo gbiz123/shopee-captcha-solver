@@ -30,7 +30,7 @@ pip install shopee-captcha-solver
 ```
 
 ## Selenium Client 
-Import the function `make_undetected_chromedriver_solver`
+Import the function `make_undetected_chromedriver_solver`.
 This function will create an undetected chromedriver instance patched with the Shopee Captcha Solver chrome extension.
 The extension will automatically detect and solve the captcha in the background, and there is nothing further you need to do.
 
@@ -49,7 +49,7 @@ stealth(driver) # Add stealth if needed
 You may also pass `ChromeOptions` to `make_undetected_chromedriver_solver()`, as well as keyword arguments for `uc.Chrome()`.
 
 ## Playwright Client
-Import the function `make_playwright_solver_context`
+Import the function `make_playwright_solver_context`.
 This function will create a playwright BrowserContext instance patched with the Shopee Captcha Solver chrome extension.
 The extension will automatically detect and solve the captcha in the background, and there is nothing further you need to do.
 
@@ -68,7 +68,7 @@ You may also pass keyword args to this function, which will be passed directly t
 By default, the user data directory is a tempory directory that is deleted at the end of runtime.
 
 ## Async Playwright Client
-Import the function `make_async_playwright_solver_context`
+Import the function `make_async_playwright_solver_context`.
 This function will create an async playwright BrowserContext instance patched with the Shopee Captcha Solver chrome extension.
 The extension will automatically detect and solve the captcha in the background, and there is nothing further you need to do.
 
