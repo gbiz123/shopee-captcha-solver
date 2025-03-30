@@ -22,15 +22,13 @@ def download_extension_to_unpacked() -> tempfile.TemporaryDirectory:
 
 
 @contextmanager
-def download_extension_to_tempfile() -> Generator[FileIO, None, None]:
+def download_extension_to_tempfile() -> Generator[tempfile._TemporaryFileWrapper, None, None]:
     r = requests.get(CHROME_EXT_DOWNLOAD_URL)
     LOGGER.debug("downloaded chrome extension from " + CHROME_EXT_DOWNLOAD_URL)
     tf = tempfile.NamedTemporaryFile("wb")
     _ = tf.write(r.content)
     LOGGER.debug("wrote chrome extension to temp file at: " + tf.name)
-    file = FileIO(tf.name)
     try:
-        yield file
+        yield tf
     finally:
-        file.close()
         tf.close()

@@ -20,7 +20,17 @@ def test_launch_browser_with_crx():
         ctx = make_playwright_solver_context(
             p,
             os.environ["API_KEY"],
-            headless=False
+            headless=False,
+            bypass_csp=True,
+            java_script_enabled=True,
+            viewport={'width': 1920, 'height': 1080},
+            ignore_default_args=[
+                "--disable-extensions",
+                "--enable-automation",
+            ],
+            args=[
+                "--disable-web-security",
+            ]
         )
         page = ctx.new_page()
         stealth_config = StealthConfig(navigator_languages=False, navigator_vendor=False, navigator_user_agent=False)
