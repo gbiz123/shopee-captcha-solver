@@ -1,7 +1,8 @@
+import os
 from collections.abc import Generator
 import zipfile
 from contextlib import contextmanager
-from io import FileIO
+from io import BufferedWriter, FileIO
 import tempfile
 import requests
 import logging
@@ -22,10 +23,10 @@ def download_extension_to_unpacked() -> tempfile.TemporaryDirectory:
 
 
 @contextmanager
-def download_extension_to_tempfile() -> Generator[tempfile._TemporaryFileWrapper, None, None]:
+def download_extension_to_tempfile() -> Generator[BufferedWriter, None, None]:
     r = requests.get(CHROME_EXT_DOWNLOAD_URL)
     LOGGER.debug("downloaded chrome extension from " + CHROME_EXT_DOWNLOAD_URL)
-    tf = tempfile.NamedTemporaryFile("wb")
+    tf = open(os.path.join(tempfile.gettempdir(), os.urandom(24).hex()), "wb")
     _ = tf.write(r.content)
     LOGGER.debug("wrote chrome extension to temp file at: " + tf.name)
     try:
