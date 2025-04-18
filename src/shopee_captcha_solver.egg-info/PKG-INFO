@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: shopee-captcha-solver
-Version: 0.1.6
+Version: 0.1.7
 Summary: This package integrates with Selenium or Playwright to solve any Shopee captcha in one line of code.
 Author-email: Toughdata LLC <greg@toughdata.net>
 Project-URL: Homepage, https://www.sadcaptcha.com

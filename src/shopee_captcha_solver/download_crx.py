@@ -11,7 +11,7 @@ LOGGER = logging.getLogger(__name__)
 
 # https://stackoverflow.com/questions/7184793/how-to-download-a-crx-file-from-the-chrome-web-store-for-a-given-id
 EXTENSION_ID = "beojaiildognffpjmpiamfofnplkdfih"
-CHROME_EXT_DOWNLOAD_URL = f"https://clients2.google.com/service/update2/crx?response=redirect&prodversion=95.0.4638.54&acceptformat=crx2,crx3&x=id%3D{EXTENSION_ID}%26uc"
+CHROME_EXT_DOWNLOAD_URL = f"https://clients2.google.com/service/update2/crx?response=redirect&prodversion=126.0.6478.270&acceptformat=crx2,crx3&x=id%3D{EXTENSION_ID}%26uc"
 
 def download_extension_to_unpacked() -> tempfile.TemporaryDirectory:
     with download_extension_to_tempfile() as f:
