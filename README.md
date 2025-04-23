@@ -37,10 +37,14 @@ The extension will automatically detect and solve the captcha in the background,
 ```py
 from shopee_captcha_solver import make_undetected_chromedriver_solver
 from selenium_stealth import stealth
+from selenium.webdriver import ChromeOptions
 import undetected_chromedriver as uc
 
+chrome_options = ChromeOptions()
+# chrome_options.add_argument("--headless=chrome") # If running headless, use this option
+
 api_key = "YOUR_API_KEY_HERE"
-driver = make_undetected_chromedriver_solver(api_key) # Returns uc.Chrome instance
+driver = make_undetected_chromedriver_solver(api_key, options=options) # Returns uc.Chrome instance
 stealth(driver) # Add stealth if needed
 # ... [The rest of your code that accesses shopee goes here]
 
@@ -57,9 +61,12 @@ The extension will automatically detect and solve the captcha in the background,
 from shopee_captcha_solver import make_playwright_solver_context
 from playwright.sync_api import sync_playwright
 
+# Need this arg if running headless
+launch_args = ["--headless=chrome"] 
+
 api_key = "YOUR_API_KEY_HERE"
 with sync_playwright() as p:
-    context = make_playwright_solver_context(p, api_key) # Returns playwright BrowserContext instance
+    context = make_playwright_solver_context(p, api_key, args=launch_args) # Returns playwright BrowserContext instance
     # ... [The rest of your code that accesses shopee goes here]
 
 # Now shopee captchas will be automatically solved!
@@ -77,10 +84,13 @@ import asyncio
 from playwright.async_api import async_playwright
 from shopee_captcha_solver import make_async_playwright_solver_context
 
+# Need this arg if running headless
+launch_args = ["--headless=chrome"] 
+
 async def main():
     api_key = "YOUR_API_KEY_HERE"
     async with async_playwright() as p:
-        context = await make_async_playwright_solver_context(p, api_key) # Returns playwright BrowserContext instance
+        context = await make_async_playwright_solver_context(p, api_key, args=launch_args) # Returns playwright BrowserContext instance
         # ... [The rest of your code that accesses shopee goes here]
 
 asyncio.run(main())
