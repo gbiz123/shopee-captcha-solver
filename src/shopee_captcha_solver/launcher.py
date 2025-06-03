@@ -6,10 +6,35 @@ from selenium.webdriver import ChromeOptions
 import undetected_chromedriver as uc
 from .download_crx import download_extension_to_unpacked
 
+import nodriver
 from playwright import sync_api
 from playwright import async_api
 
 LOGGER = logging.getLogger(__name__)
+
+async def make_nodriver_solver(
+    api_key: str,
+    **nodriver_start_kwargs
+) -> nodriver.Browser:
+    """Create a nodriver Browser patched with SadCaptcha.
+    
+    Args:
+        api_key (str): SadCaptcha API key
+        nodriver_start_args: Keyword arguments for nodriver.start()
+    """
+    ext_dir = download_extension_to_unpacked()
+    _patch_extension_file_with_key(ext_dir.name, api_key)
+    add_extension_argument = f'--load-extension={ext_dir.name}'
+    browser_args = nodriver_start_kwargs.get("browser_args")
+    if isinstance(browser_args, list):
+        nodriver_start_kwargs["browser_args"].append(add_extension_argument)
+        LOGGER.debug("Appended add extension argument to browser args: " + add_extension_argument)
+    else:
+        nodriver_start_kwargs["browser_args"] = [add_extension_argument]
+        LOGGER.debug("Set browser arg to " + add_extension_argument)
+    chrome = await nodriver.start(**nodriver_start_kwargs)
+    LOGGER.debug("created new nodriver Browser patched with sadcaptcha")
+    return chrome
 
 def make_undetected_chromedriver_solver(
     api_key: str,
