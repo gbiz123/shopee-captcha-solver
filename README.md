@@ -17,6 +17,7 @@ The puzzle slide is just a simple challenge that asks you to move the piece to t
     
 ## Requirements
 - Python >= 3.10
+- **If using Nodriver** - Google chrome installed on system. This is the recommended method.
 - **If using Selenium** - Selenium properly installed and in `PATH`
 - **If using Playwright** - Playwright must be properly installed with `playwright install`
 - **Stealth plugin** - You should use the appropriate `stealth` plugin for whichever browser automation framework you are using.
@@ -28,6 +29,25 @@ This project can be installed with `pip`. Just run the following command:
 ```
 pip install shopee-captcha-solver
 ```
+
+## Nodriver Client (Recommended)
+Nodriver is the latest advancement in undetected automation technology, and is the recommended method for using SadCaptcha. 
+Import the function `make_nodriver_solver`
+This function will create an noddriver instance patched with the Shopee Captcha Solver chrome extension.
+The extension will automatically detect and solve the captcha in the background, and there is nothing further you need to do.
+
+```py
+from shopee_captcha_solver.launcher import make_nodriver_solver
+
+async def main():
+    launch_args = ["--headless=chrome"] # If running headless, use this option, or headless=new
+    api_key = "YOUR_API_KEY_HERE"
+    # NOTE: Keyword arguments passed to make_nodriver_solver() are directly passed to nodriver.start()!
+    driver = await make_nodriver_solver(api_key, browser_args=launch_args) # Returns nodriver browser 
+    # ... [The rest of your code that accesses shopee goes here]
+    # Now shopee captchas will be automatically solved!
+```
+All keyword arguments passed to `make_nodriver_solver()` are passed directly to `nodriver.start()`.
 
 ## Selenium Client 
 Import the function `make_undetected_chromedriver_solver`.
