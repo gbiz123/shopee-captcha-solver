@@ -13,7 +13,7 @@ from shopee_captcha_solver.launcher import make_async_playwright_solver_context,
 #         headless=False
 #     )
 #     input("waiting for enter")
-#     solver.close()
+#     solver.close() 
 #
 # def test_launch_browser_with_crx():
 #     with sync_playwright() as p:
@@ -56,6 +56,8 @@ async def test_launch_browser_with_nodriver():
         os.environ["API_KEY"],
         headless=False,
         user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+        # browser_args=["--proxy-server=206.232.74.246:7316"]
     )
     page = await ctx.get("https://shopee.com")
+    # page = await ctx.get("https://xiapi.xiapibuy.com")
     input("waiting for enter")

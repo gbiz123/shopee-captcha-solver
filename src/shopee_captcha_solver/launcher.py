@@ -32,6 +32,7 @@ async def make_nodriver_solver(
     else:
         nodriver_start_kwargs["browser_args"] = [add_extension_argument]
         LOGGER.debug("Set browser arg to " + add_extension_argument)
+    nodriver_start_kwargs["browser_args"].append("--disable-features=DisableLoadExtensionCommandLineSwitch")
     chrome = await nodriver.start(**nodriver_start_kwargs)
     LOGGER.debug("created new nodriver Browser patched with sadcaptcha")
     return chrome
@@ -53,6 +54,7 @@ def make_undetected_chromedriver_solver(
     ext_dir = download_extension_to_unpacked()
     _patch_extension_file_with_key(ext_dir.name, api_key)
     options.add_argument(f'--load-extension={ext_dir.name}')
+    options.add_argument("--disable-features=DisableLoadExtensionCommandLineSwitch")
     chrome = uc.Chrome(options=options, **uc_chrome_kwargs)
     LOGGER.debug("created new undetected chromedriver patched with sadcaptcha")
     return chrome
@@ -130,6 +132,12 @@ def _prepare_pw_context_args(
             '--disable-infobars',  
             '--start-maximized',  
         ]
+    playwright_context_kwargs["args"].append("--disable-features=DisableLoadExtensionCommandLineSwitch")
+    if playwright_context_kwargs.get("headless") == True:
+        if "--headless=new" not in playwright_context_kwargs["args"]:
+            _ = playwright_context_kwargs["args"].append("--headless=new")
+        playwright_context_kwargs["headless"] = None
+        LOGGER.debug("Removed headless=True and added --headless=new launch arg")
     LOGGER.debug("prepared playwright context kwargs")
     return playwright_context_kwargs
 
