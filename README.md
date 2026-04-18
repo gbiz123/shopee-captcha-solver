@@ -1,3 +1,5 @@
+⚠️ SadCaptcha is looking for devs! To learn more, send a message to @toughdata on telegram.
+
 # Shopee Captcha Solver API
 This project is the [SadCaptcha Shopee Captcha Solver](https://www.sadcaptcha.com/shopee-captcha-solver?ref=shopeeghclientrepo) API client.
 The purpose is to make integrating SadCaptcha into your Selenium, Playwright, or Async Playwright app as simple as one line of code.
