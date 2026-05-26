@@ -1,3 +1,5 @@
+⚠️ SadCaptcha is looking for devs! To learn more, send a message to @toughdata on telegram.
+
 # Shopee Captcha Solver API
 This project is the [SadCaptcha Shopee Captcha Solver](https://www.sadcaptcha.com/shopee-captcha-solver?ref=shopeeghclientrepo) API client.
 The purpose is to make integrating SadCaptcha into your Selenium, Playwright, or Async Playwright app as simple as one line of code.
@@ -17,7 +19,7 @@ The puzzle slide is just a simple challenge that asks you to move the piece to t
     
 ## Requirements
 - Python >= 3.10
-- **If using Nodriver** - Google chrome installed on system. This is the recommended method.
+- **If using Nodriver** - Chromium installed on system. This is the recommended method. Must use chromium, since Google Chrome does not support programmatically loading extensions.
 - **If using Selenium** - Selenium properly installed and in `PATH`
 - **If using Playwright** - Playwright must be properly installed with `playwright install`
 - **Stealth plugin** - You should use the appropriate `stealth` plugin for whichever browser automation framework you are using.
@@ -31,6 +33,7 @@ pip install shopee-captcha-solver
 ```
 
 ## Nodriver Client (Recommended)
+⚠️ IMPORTANT ⚠️ Must use Chromium for nodriver since Google chrome no longer supports programmatically loading extensions!!
 Nodriver is the latest advancement in undetected automation technology, and is the recommended method for using SadCaptcha. 
 Import the function `make_nodriver_solver`
 This function will create an noddriver instance patched with the Shopee Captcha Solver chrome extension.
@@ -43,7 +46,11 @@ async def main():
     launch_args = ["--headless=chrome"] # If running headless, use this option, or headless=new
     api_key = "YOUR_API_KEY_HERE"
     # NOTE: Keyword arguments passed to make_nodriver_solver() are directly passed to nodriver.start()!
-    driver = await make_nodriver_solver(api_key, browser_args=launch_args) # Returns nodriver browser 
+    driver = await make_nodriver_solver(
+        api_key,
+        browser_args=launch_args,
+        browser_executable_path="/usr/bin/chromium-browser" # IMPORTANT! Must use Chromium for nodriver since Google chrome no longer supports programmatically loading extensions!!
+    ) # Returns nodriver browser 
     # ... [The rest of your code that accesses shopee goes here]
     # Now shopee captchas will be automatically solved!
 ```
