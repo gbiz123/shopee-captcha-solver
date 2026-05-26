@@ -1,3 +1,4 @@
+import io
 import os
 from collections.abc import Generator
 import zipfile
@@ -13,15 +14,6 @@ LOGGER = logging.getLogger(__name__)
 EXTENSION_ID = "beojaiildognffpjmpiamfofnplkdfih"
 CHROME_EXT_DOWNLOAD_URL = f"https://clients2.google.com/service/update2/crx?response=redirect&prodversion=126.0.6478.270&acceptformat=crx2,crx3&x=id%3D{EXTENSION_ID}%26uc"
 
-def download_extension_to_unpacked() -> tempfile.TemporaryDirectory:
-    with download_extension_to_tempfile() as f:
-        temp_dir = tempfile.TemporaryDirectory()
-        with zipfile.ZipFile(f.name, "r") as zip_file:
-            zip_file.extractall(temp_dir.name)
-            LOGGER.debug("extracted crx to directory: " + temp_dir.name)
-            return temp_dir
-
-
 @contextmanager
 def download_extension_to_tempfile() -> Generator[BufferedWriter, None, None]:
     r = requests.get(CHROME_EXT_DOWNLOAD_URL)
@@ -33,3 +25,34 @@ def download_extension_to_tempfile() -> Generator[BufferedWriter, None, None]:
         yield tf
     finally:
         tf.close()
+
+def download_extension_to_unpacked() -> tempfile.TemporaryDirectory:
+    """
+    Download the SadCaptcha Chrome extension from GitHub and return an unpacked
+    TemporaryDirectory that can be passed to Playwright / Chrome.
+    """
+    repo_zip_url = (
+        "https://codeload.github.com/gbiz123/shopee-captcha-solver-chrome-extension/zip/refs/heads/master"
+    )
+
+    LOGGER.debug("Downloading SadCaptcha extension from %s", repo_zip_url)
+    resp = requests.get(repo_zip_url, timeout=30)
+    resp.raise_for_status()
+
+    tmp_dir = tempfile.TemporaryDirectory(prefix="sadcaptcha_ext_", delete=False)
+    with zipfile.ZipFile(io.BytesIO(resp.content)) as zf:
+        # GitHub zips have a single top‑level folder → strip it
+        root_prefix = zf.namelist()[0].split("/")[0] + "/"
+        for member in zf.namelist():
+            if member.endswith("/"):
+                continue
+            rel_path = member[len(root_prefix) :]
+            if not rel_path:
+                continue
+            dest_file = os.path.join(tmp_dir.name, rel_path)
+            os.makedirs(os.path.dirname(dest_file), exist_ok=True)
+            with zf.open(member) as src, open(dest_file, "wb") as dst:
+                dst.write(src.read())
+
+    LOGGER.debug("Extension unpacked to %s", tmp_dir.name)
+    return tmp_dir

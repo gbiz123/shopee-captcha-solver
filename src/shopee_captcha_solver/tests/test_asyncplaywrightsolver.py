@@ -3,7 +3,7 @@ import logging
 import os
 
 from playwright.async_api import Page, async_playwright, expect
-from playwright_stealth import stealth_async, StealthConfig
+from playwright_stealth import Stealth
 import pytest
 
 from ..asyncplaywrightsolver import AsyncPlaywrightSolver

@@ -3,7 +3,7 @@ import time
 import os
 
 from playwright.sync_api import Page, sync_playwright, expect
-from playwright_stealth import stealth_sync, StealthConfig
+from playwright_stealth import Stealth
 
 from ..playwrightsolver import PlaywrightSolver
 
@@ -12,7 +12,7 @@ def test_solve_captcha_on_shopee_register(caplog):
         "server": "45.67.2.115:5689",
     }
     caplog.set_level(logging.DEBUG)
-    with sync_playwright() as p:
+    with Stealth().use_sync(sync_playwright()) as p:
         browser = p.chromium.launch(headless=False, proxy=mexico_proxy)
         page = browser.new_page()
         config = StealthConfig(navigator_languages=False, navigator_vendor=False, navigator_user_agent=False)
