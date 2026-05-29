@@ -20,8 +20,8 @@ The puzzle slide is just a simple challenge that asks you to move the piece to t
 ## Requirements
 - Python >= 3.10
 - **If using Nodriver** - Chromium installed on system. This is the recommended method. Must use chromium, since Google Chrome does not support programmatically loading extensions.
-- **If using Selenium** - Selenium properly installed and in `PATH`
-- **If using Playwright** - Playwright must be properly installed with `playwright install`
+- **If using Selenium** - Selenium properly installed and in `PATH`. Selenium is not reccommended for this since Shopee has strong bot detection.
+- **If using Playwright** - Playwright must be properly installed with `playwright install`. Playwright is not reccommended for this since Shopee has strong bot detection.
 - **Stealth plugin** - You should use the appropriate `stealth` plugin for whichever browser automation framework you are using.
     - For Selenium, you can use [undetected-chromedriver](https://github.com/ultrafunkamsterdam/undetected-chromedriver)
     - For Playwright, you can use [playwright-stealth](https://pypi.org/project/playwright-stealth/)
