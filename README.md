@@ -20,8 +20,8 @@ The puzzle slide is just a simple challenge that asks you to move the piece to t
 ## Requirements
 - Python >= 3.10
 - **If using Nodriver** - Chromium installed on system. This is the recommended method. Must use chromium, since Google Chrome does not support programmatically loading extensions.
-- **If using Selenium** - Selenium properly installed and in `PATH`
-- **If using Playwright** - Playwright must be properly installed with `playwright install`
+- **If using Selenium** - Selenium properly installed and in `PATH`. 
+- **If using Playwright** - Playwright must be properly installed with `playwright install`. 
 - **Stealth plugin** - You should use the appropriate `stealth` plugin for whichever browser automation framework you are using.
     - For Selenium, you can use [undetected-chromedriver](https://github.com/ultrafunkamsterdam/undetected-chromedriver)
     - For Playwright, you can use [playwright-stealth](https://pypi.org/project/playwright-stealth/)
@@ -57,6 +57,9 @@ async def main():
 All keyword arguments passed to `make_nodriver_solver()` are passed directly to `nodriver.start()`.
 
 ## Selenium Client 
+Selenium is not reccommended for this since Shopee has strong bot detection. Use the nodriver package instead.
+
+
 Import the function `make_undetected_chromedriver_solver`.
 This function will create an undetected chromedriver instance patched with the Shopee Captcha Solver chrome extension.
 The extension will automatically detect and solve the captcha in the background, and there is nothing further you need to do.
@@ -80,6 +83,9 @@ stealth(driver) # Add stealth if needed
 You may also pass `ChromeOptions` to `make_undetected_chromedriver_solver()`, as well as keyword arguments for `uc.Chrome()`.
 
 ## Playwright Client
+Playwright is not reccommended for this since Shopee has strong bot detection. Use the nodriver package instead.
+
+
 Import the function `make_playwright_solver_context`.
 This function will create a playwright BrowserContext instance patched with the Shopee Captcha Solver chrome extension.
 The extension will automatically detect and solve the captcha in the background, and there is nothing further you need to do.
