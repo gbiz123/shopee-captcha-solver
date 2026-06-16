@@ -11,11 +11,13 @@ Currently we are able to solve the crawling image and the puzzle slide:
 <div align="center">
     <img src="https://sadcaptcha.b-cdn.net/shopee-image-crawl-captcha.png" width="200px" height="150px" alt="Shopee Captcha Solver">
     <img src="https://sadcaptcha.b-cdn.net/shopee-puzzle-slide-captcha.png" width="200px" height="150px" alt="SHopee Captcha Solver">
+    <img src="https://sadcaptcha.b-cdn.net/shopee-image-drag-canvas.png" width="200px" height="150px" alt="SHopee Captcha Solver">
 </div>
 
 The Crawling Image challenge is the one where there is a puzzle piece that travels in an unpredictable trajectory, and there are two possible locations where the solution may be.
 This often shows up at login.
 The puzzle slide is just a simple challenge that asks you to move the piece to the correct location.
+The Image Drag challenge is the one where the user must drag the missing piece of the puzzle, then click the "Verify" button.
     
 ## Requirements
 - Python >= 3.10
