@@ -11,11 +11,13 @@ Currently we are able to solve the crawling image and the puzzle slide:
 <div align="center">
     <img src="https://sadcaptcha.b-cdn.net/shopee-image-crawl-captcha.png" width="200px" height="150px" alt="Shopee Captcha Solver">
     <img src="https://sadcaptcha.b-cdn.net/shopee-puzzle-slide-captcha.png" width="200px" height="150px" alt="SHopee Captcha Solver">
+    <img src="https://sadcaptcha.b-cdn.net/shopee_image_drag_canvas_1.png" width="200px" height="150px" alt="Shopee Captcha Solver">
 </div>
 
 The Crawling Image challenge is the one where there is a puzzle piece that travels in an unpredictable trajectory, and there are two possible locations where the solution may be.
 This often shows up at login.
 The puzzle slide is just a simple challenge that asks you to move the piece to the correct location.
+The Image Drag challenge is the one where the user must drag the missing piece of the puzzle, then click the "Verify" button.
     
 ## Requirements
 - Python >= 3.10
@@ -137,3 +139,6 @@ By default, the user data directory is a tempory directory that is deleted at th
 - Homepage: https://www.sadcaptcha.com/
 - Email: greg@sadcaptcha.com
 - Telegram @toughdata
+
+## Support us
+<a href="https://www.buymeacoffee.com/gbiz123" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
