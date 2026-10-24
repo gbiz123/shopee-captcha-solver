@@ -5,5 +5,6 @@ from .api import ApiClient
 from .launcher import (
     make_playwright_solver_context,
     make_async_playwright_solver_context,
-    make_undetected_chromedriver_solver
+    make_undetected_chromedriver_solver,
+    make_nodriver_solver
 )

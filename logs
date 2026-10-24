@@ -19,8 +19,8 @@ DEBUG    nodriver.core.browser:browser.py:125 Session object initialized: {'conf
 	autodiscover_targets = True
 	user_agent = Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
 	browser_args = ['--disable-breakpad', '--disable-dev-shm-usage', '--disable-features=DisableLoadExtensionCommandLineSwitch', '--disable-infobars', '--disable-search-engine-choice-screen', '--disable-session-crashed-bubble', '--homepage=about:blank', '--load-extension=/home/gregb/ToughdataLLC/SadCaptcha/shopee-captcha-solver-chrome-extension/', '--no-default-browser-check', '--no-first-run', '--no-pings', '--no-service-autorun', '--password-store=basic', '--remote-allow-origins=*']
-	user_data_dir = /tmp/uc_44c9ubnl
-	uses_custom_data_dir = False, 'info': None, '_target': None, '_process': None, '_process_pid': None, '_keep_user_data_dir': None, '_is_updating': <asyncio.locks.Event object at 0x7fddc9c2f8c0 [unset]>, 'connection': None, 'session_id': None, 'websocket_url': None, 'handlers': defaultdict(<class 'list'>, {}), 'lock': <asyncio.locks.Lock object at 0x7fddc9c2fa10 [unlocked]>, 'socket': None, 'target': '', 'parent': None, '__count__': count(0), '_auto_attach': False, '_transactions': [], '_targets': [], '_mapper': {}, '_tx_by_id': {}, '_listener_task': None}
+	user_data_dir = /tmp/uc_b5aegnuj
+	uses_custom_data_dir = False, 'info': None, '_target': None, '_process': None, '_process_pid': None, '_keep_user_data_dir': None, '_is_updating': <asyncio.locks.Event object at 0x7f77319538c0 [unset]>, 'connection': None, 'session_id': None, 'websocket_url': None, 'handlers': defaultdict(<class 'list'>, {}), 'lock': <asyncio.locks.Lock object at 0x7f7731953a10 [unlocked]>, 'socket': None, 'target': '', 'parent': None, '__count__': count(0), '_auto_attach': False, '_transactions': [], '_targets': [], '_mapper': {}, '_tx_by_id': {}, '_listener_task': None}
 DEBUG    nodriver.core.browser:browser.py:320 BROWSER EXECUTABLE PATH: /usr/bin/chromium-browser
 INFO     nodriver.core.browser:browser.py:349 starting
 	executable :/usr/bin/chromium-browser
@@ -38,61 +38,69 @@ arguments:
 	--disable-dev-shm-usage
 	--disable-session-crashed-bubble
 	--disable-search-engine-choice-screen
-	--user-data-dir=/tmp/uc_44c9ubnl
+	--user-data-dir=/tmp/uc_b5aegnuj
 	--disable-session-crashed-bubble
 	--disable-features=IsolateOrigins,site-per-process
 	--load-extension=/home/gregb/ToughdataLLC/SadCaptcha/shopee-captcha-solver-chrome-extension/
 	--disable-features=DisableLoadExtensionCommandLineSwitch
 	--remote-debugging-host=127.0.0.1
-	--remote-debugging-port=34139
+	--remote-debugging-port=53923
 DEBUG    websockets.client:protocol.py:178 = connection is CONNECTING
-DEBUG    websockets.client:client.py:294 > GET /devtools/browser/afbe8a52-481e-42ed-9e7a-6f7f3318dba7 HTTP/1.1
-DEBUG    websockets.client:client.py:296 > Host: 127.0.0.1:34139
+DEBUG    websockets.client:client.py:294 > GET /devtools/browser/1c3eb55a-d60f-4bf2-992b-640e0ab3e629 HTTP/1.1
+DEBUG    websockets.client:client.py:296 > Host: 127.0.0.1:53923
 DEBUG    websockets.client:client.py:296 > Upgrade: websocket
 DEBUG    websockets.client:client.py:296 > Connection: Upgrade
-DEBUG    websockets.client:client.py:296 > Sec-WebSocket-Key: BCqDxt6ux2MiGOzhwM9DPg==
+DEBUG    websockets.client:client.py:296 > Sec-WebSocket-Key: qlLnpUP6EZk8v6Olyx9/tQ==
 DEBUG    websockets.client:client.py:296 > Sec-WebSocket-Version: 13
 DEBUG    websockets.client:client.py:296 > Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
 DEBUG    websockets.client:client.py:296 > User-Agent: Python/3.14 websockets/16.0
 DEBUG    websockets.client:client.py:320 < HTTP/1.1 101 WebSocket Protocol Handshake
 DEBUG    websockets.client:client.py:322 < Upgrade: WebSocket
 DEBUG    websockets.client:client.py:322 < Connection: Upgrade
-DEBUG    websockets.client:client.py:322 < Sec-WebSocket-Accept: Vv2MgUti/SJ8H565g3n23w7PDIE=
+DEBUG    websockets.client:client.py:322 < Sec-WebSocket-Accept: f5xahrPEeNypv6xpiRYdP8MmGD8=
 DEBUG    websockets.client:client.py:322 < Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits=15
 DEBUG    websockets.client:protocol.py:178 = connection is OPEN
 DEBUG    websockets.client:protocol.py:755 > TEXT '{"method": "Target.attachToBrowserTarget", "params": [], "id": 0}' [65 bytes]
 DEBUG    websockets.client:protocol.py:609 < TEXT '{"method":"Target.attachedToTarget","params":{"...ingForDebugger":false}}' [263 bytes]
-DEBUG    websockets.client:protocol.py:609 < TEXT '{"id":0,"result":{"sessionId":"9226EF8A6B9F32217A18A84F00B0629A"}}' [66 bytes]
-DEBUG    websockets.client:protocol.py:755 > TEXT '{"method": "Target.getTargets", "params": {}, "...F32217A18A84F00B0629A"}' [103 bytes]
-DEBUG    websockets.client:protocol.py:609 < TEXT '{"id":1,"result":{"targetInfos":[{"targetId":"D...F32217A18A84F00B0629A"}' [552 bytes]
+DEBUG    websockets.client:protocol.py:609 < TEXT '{"id":0,"result":{"sessionId":"4A12E37219DDA44AD505406B5FAD4C49"}}' [66 bytes]
+DEBUG    websockets.client:protocol.py:755 > TEXT '{"method": "Target.getTargets", "params": {}, "...DA44AD505406B5FAD4C49"}' [103 bytes]
+DEBUG    websockets.client:protocol.py:609 < TEXT '{"id":1,"result":{"targetInfos":[{"targetId":"1...DA44AD505406B5FAD4C49"}' [552 bytes]
 DEBUG    shopee_captcha_solver.launcher:launcher.py:42 created new nodriver Browser patched with sadcaptcha
 DEBUG    websockets.client:protocol.py:178 = connection is CONNECTING
-DEBUG    websockets.client:client.py:294 > GET /devtools/browser/afbe8a52-481e-42ed-9e7a-6f7f3318dba7 HTTP/1.1
-DEBUG    websockets.client:client.py:296 > Host: 127.0.0.1:34139
+DEBUG    websockets.client:client.py:294 > GET /devtools/browser/1c3eb55a-d60f-4bf2-992b-640e0ab3e629 HTTP/1.1
+DEBUG    websockets.client:client.py:296 > Host: 127.0.0.1:53923
 DEBUG    websockets.client:client.py:296 > Upgrade: websocket
 DEBUG    websockets.client:client.py:296 > Connection: Upgrade
-DEBUG    websockets.client:client.py:296 > Sec-WebSocket-Key: oRkuJsdfGykG3LDx4g/4eA==
+DEBUG    websockets.client:client.py:296 > Sec-WebSocket-Key: wA3xlHrsnJPSTrCN3XpMJQ==
 DEBUG    websockets.client:client.py:296 > Sec-WebSocket-Version: 13
 DEBUG    websockets.client:client.py:296 > Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
 DEBUG    websockets.client:client.py:296 > User-Agent: Python/3.14 websockets/16.0
 DEBUG    websockets.client:client.py:320 < HTTP/1.1 101 WebSocket Protocol Handshake
 DEBUG    websockets.client:client.py:322 < Upgrade: WebSocket
 DEBUG    websockets.client:client.py:322 < Connection: Upgrade
-DEBUG    websockets.client:client.py:322 < Sec-WebSocket-Accept: O1ASDcLIJZN35qkdfvyGIIjUDeI=
+DEBUG    websockets.client:client.py:322 < Sec-WebSocket-Accept: 5Zw2TdZ0SGNl8Wr02BbJwYU+bD8=
 DEBUG    websockets.client:client.py:322 < Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits=15
 DEBUG    websockets.client:protocol.py:178 = connection is OPEN
 DEBUG    websockets.client:protocol.py:755 > TEXT '{"method": "Target.attachToTarget", "params": {...atten": true}, "id": 0}' [121 bytes]
 DEBUG    websockets.client:protocol.py:609 < TEXT '{"method":"Target.attachedToTarget","params":{"...ingForDebugger":false}}' [333 bytes]
-DEBUG    websockets.client:protocol.py:609 < TEXT '{"id":0,"result":{"sessionId":"2FD0C315CB692077EEFB1F7F4327539F"}}' [66 bytes]
-DEBUG    websockets.client:protocol.py:755 > TEXT '{"method": "Target.getTargetInfo", "params": {"...92077EEFB1F7F4327539F"}' [152 bytes]
-DEBUG    websockets.client:protocol.py:609 < TEXT '{"id":1,"result":{"targetInfo":{"targetId":"3BF...92077EEFB1F7F4327539F"}' [278 bytes]
-DEBUG    websockets.client:protocol.py:755 > TEXT '{"method": "Page.navigate", "params": {"url": "...92077EEFB1F7F4327539F"}' [126 bytes]
-DEBUG    websockets.client:protocol.py:609 < TEXT '{"id":2,"result":{"frameId":"3BFB140DF789FDA463...92077EEFB1F7F4327539F"}' [176 bytes]
+DEBUG    websockets.client:protocol.py:609 < TEXT '{"id":0,"result":{"sessionId":"C803A48B410895BB9F480FB02BE90D89"}}' [66 bytes]
+DEBUG    websockets.client:protocol.py:755 > TEXT '{"method": "Target.getTargetInfo", "params": {"...895BB9F480FB02BE90D89"}' [152 bytes]
+DEBUG    websockets.client:protocol.py:609 < TEXT '{"id":1,"result":{"targetInfo":{"targetId":"65A...895BB9F480FB02BE90D89"}' [278 bytes]
+DEBUG    websockets.client:protocol.py:755 > TEXT '{"method": "Page.navigate", "params": {"url": "...895BB9F480FB02BE90D89"}' [126 bytes]
+DEBUG    websockets.client:protocol.py:609 < TEXT '{"id":2,"result":{"frameId":"65AA6F30AB18B88ED9...895BB9F480FB02BE90D89"}' [176 bytes]
 DEBUG    websockets.client:protocol.py:755 > TEXT '{"method": "Target.attachToTarget", "params": {...atten": true}, "id": 3}' [121 bytes]
 DEBUG    websockets.client:protocol.py:609 < TEXT '{"method":"Target.attachedToTarget","params":{"...ingForDebugger":false}}' [317 bytes]
-DEBUG    websockets.client:protocol.py:609 < TEXT '{"id":3,"result":{"sessionId":"BB791CB6F121943678278DFE9FD0ECAC"}}' [66 bytes]
-DEBUG    websockets.client:protocol.py:755 > TEXT '{"method": "Target.getTargetInfo", "params": {"...1943678278DFE9FD0ECAC"}' [152 bytes]
-DEBUG    websockets.client:protocol.py:609 < TEXT '{"id":4,"result":{"targetInfo":{"targetId":"3BF...1943678278DFE9FD0ECAC"}' [262 bytes]
-DEBUG    websockets.client:protocol.py:755 > TEXT '{"method": "Target.getTargets", "params": {}, "...F32217A18A84F00B0629A"}' [103 bytes]
-DEBUG    websockets.client:protocol.py:609 < TEXT '{"id":2,"result":{"targetInfos":[{"targetId":"D...F32217A18A84F00B0629A"}' [887 bytes]
-waiting for enter
+DEBUG    websockets.client:protocol.py:609 < TEXT '{"id":3,"result":{"sessionId":"BB6447372C7DB6AB3FD8DE55210B92C4"}}' [66 bytes]
+DEBUG    websockets.client:protocol.py:755 > TEXT '{"method": "Target.getTargetInfo", "params": {"...DB6AB3FD8DE55210B92C4"}' [152 bytes]
+DEBUG    websockets.client:protocol.py:609 < TEXT '{"id":4,"result":{"targetInfo":{"targetId":"65A...DB6AB3FD8DE55210B92C4"}' [262 bytes]
+DEBUG    websockets.client:protocol.py:755 > TEXT '{"method": "Target.getTargets", "params": {}, "...DA44AD505406B5FAD4C49"}' [103 bytes]
+DEBUG    websockets.client:protocol.py:609 < TEXT '{"id":2,"result":{"targetInfos":[{"targetId":"1...DA44AD505406B5FAD4C49"}' [887 bytes]
+waiting for enterPASSED
+
+=============================== warnings summary ===============================
+src/shopee_captcha_solver/tests/test_launcher.py::test_launch_browser_with_nodriver
+  /home/gregb/ToughdataLLC/SadCaptcha/shopee-captcha-solver/venv/lib64/python3.14/site-packages/nodriver/core/connection.py:514: DeprecationWarning: 'asyncio.iscoroutinefunction' is deprecated and slated for removal in Python 3.16; use inspect.iscoroutinefunction() instead
+    if iscoroutinefunction(callback) or iscoroutine(callback):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========== 1 passed, 12 deselected, 1 warning in 188.96s (0:03:08) ============

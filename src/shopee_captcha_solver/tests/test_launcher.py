@@ -1,4 +1,6 @@
 import os
+import shutil
+import tempfile
 from playwright.sync_api import sync_playwright
 from playwright.async_api import async_playwright
 from playwright_stealth import Stealth
@@ -52,14 +54,19 @@ from shopee_captcha_solver.launcher import make_async_playwright_solver_context,
 
 @pytest.mark.asyncio
 async def test_launch_browser_with_nodriver():
-    ctx = await make_nodriver_solver(
-        os.environ["API_KEY"],
-        local_extension_directory="/home/gregb/ToughdataLLC/SadCaptcha/shopee-captcha-solver-chrome-extension/",
-        headless=False,
-        user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
-        browser_executable_path="/usr/bin/chromium-browser"
-        # browser_args=["--proxy-server=206.232.74.246:7316"]
-    )
-    page = await ctx.get("https://shopee.com")
-    # page = await ctx.get("https://xiapi.xiapibuy.com")
-    input("waiting for enter")
+        
+    local_extension_directory="/home/gregb/ToughdataLLC/SadCaptcha/shopee-captcha-solver-chrome-extension/"
+    with tempfile.TemporaryDirectory(delete=False) as td:
+        shutil.copytree(local_extension_directory, td, dirs_exist_ok=True)
+        ctx = await make_nodriver_solver(
+            os.environ["API_KEY"],
+            local_extension_directory=td,
+            headless=False,
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+            browser_executable_path="/usr/bin/chromium-browser"
+            # browser_args=["--proxy-server=206.232.74.246:7316"]
+        )
+        page = await ctx.get("https://shopee.ph/verify/captcha/popup?__mobile__=1&app_key=User.APP&scene=signup_email")
+        # page = await ctx.get("https://shopee.com")
+        # page = await ctx.get("https://xiapi.xiapibuy.com")
+        input("waiting for enter")
